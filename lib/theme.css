@@ -103,7 +103,7 @@
  *********************************************/
 
 :root {
-  --font-sans: var(--font-inter);
+  --font-sans: 'InterVariable', sans-serif;
   --font-weight-regular: 400;
   --font-weight-black: 900;
 
@@ -195,26 +195,27 @@
   --color-foreground: var(--color-black);
 
   /* Brand colors */
-  --theme-primary: #0070b4;
-  --theme-primary-alt: #00407c;
-  --theme-secondary: #7ab6e2;
+  --theme-primary: var(--color-accent-blue);
+  --theme-primary-alt: var(--color-accent-dark-blue);
+  --theme-secondary: var(--color-dark-blue);
   --theme-background-gray: #efefef;
 
   /* Background of the presentation */
-  --r-background: #ffffff;
-  --r-background-color: #efefef;
+  --r-background: var(--color-white);
+  --r-background-color: var(--theme-background-gray);
 
   /* Primary/body text */
-  --r-main-font: 'InterVariable', sans-serif;
+  --r-main-font: var(--font-sans);
   --r-main-color: #2b2b2b;
 
   /* Margins */
   --r-margin-after: 0.5em;
+  --r-block-margin: var(--r-margin-after);
 
   /* Headings */
   --r-heading-margin: 0;
   --r-heading-margin-after: var(--r-margin-after);
-  --r-heading-font: 'InterVariable', sans-serif;
+  --r-heading-font: var(--font-sans);
   --r-heading-color: var(--theme-primary);
   --r-heading-text-transform: none;
   --r-heading-font-weight: var(--font-weight-black);
@@ -248,7 +249,7 @@
 .reveal {
   font-size: 1.6em;
   font-family: var(--r-main-font);
-  font-weight: normal;
+  font-weight: var(--font-weight-regular);
   font-feature-settings: "ss07", "ss08", "cv03", "cv04", "cv10";
   color: var(--r-main-color);
 }
@@ -338,7 +339,7 @@
 .reveal table th,
 .reveal table td {
   text-align: left;
-  border-bottom: 1px solid;
+  border-bottom: 0.0625rem solid;
 }
 
 .reveal table tbody tr:last-child th,
@@ -426,11 +427,11 @@
 }
 
 .reveal .slides section ul li::marker {
-  content: '> ';
+  content: '– ';
 }
 
 .reveal .slides section ul li li::marker {
-  content: '- ';
+  content: '– ';
 }
 
 .reveal .slides section ul,
@@ -479,10 +480,12 @@
   height: 100%;
   box-sizing: border-box;
   padding: 2em;
+  padding-inline-start: var(--slide-padding-inline-start, 2em);
 }
 
 /* watermark lives on the fixed-size slide canvas, not the auto-height section */
 .reveal .slides {
+  --slide-padding-inline-start: 2em;
   text-align: initial;
   background-color: var(--r-background);
 }
@@ -531,8 +534,9 @@
 .title-layout {
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
+  --slide-padding-inline-start: 8em;
+  --slide-chrome-padding-inline-start: 8em;
   background-color: var(--color-accent-blue);
-  padding-inline-start: 12rem !important;
   color: var(--color-white);
 
   h1,
@@ -577,49 +581,94 @@
   display: grid !important;
 }
 
+html:not(.reveal-print) .reveal .slides:has(> section.title-layout.present) {
+  --slide-chrome-padding-inline-start: 8em;
+  --slide-border-style: solid 0.25rem var(--color-white);
+  --slide-header-footer-color: var(--color-white);
+}
+
 /*********************************************
- * PDF EXPORT
+ * HEADER AND FOOTER
  *********************************************/
 
-html.reveal-print .reveal .slides {
-  background: none;
+.reveal header,
+.reveal footer {
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  box-sizing: border-box;
+  left: 0;
+  padding-inline-start: var(--slide-chrome-padding-inline-start, 2em);
+  color: var(--slide-header-footer-color, inherit);
+  line-height: 2.5;
+}
+
+.reveal header {
+  top: 0;
+
+  &>div {
+    border-bottom: var(--slide-border-style, none);
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-black);
+    padding-inline-end: 1rem;
+  }
+}
+
+.reveal footer {
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  opacity: 0.72;
+  padding-inline-end: 1rem;
+
+  &>div {
+    font-size: 0.9rem;
+  }
+
+  &>a {
+    color: inherit;
+    font-size: 0.9rem;
+    text-underline-offset: 0.2em;
+
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 0.2em;
+    }
+  }
+}
+
+/*********************************************
+ * PDF EXPORT (Reveal's print mode)
+ *********************************************/
+
+html.reveal-print .reveal-viewport {
+  background-color: var(--color-white) !important;
+}
+
+html.reveal-print .reveal header,
+html.reveal-print .reveal footer {
+  line-height: 2.5;
 }
 
 html.reveal-print .reveal .slide-number-pdf {
-  top: 8px;
+  top: 0.5rem;
   bottom: auto;
 }
 
 html.reveal-print .reveal .slides section:not(.stack) {
   padding: 2em !important;
+  padding-inline-start: var(--slide-padding-inline-start, 2em) !important;
 }
 
 html.reveal-print .reveal .slides section.title-layout {
   display: grid !important;
+  --slide-border-style: solid 0.25rem var(--color-white);
+  --slide-header-footer-color: var(--color-white);
 }
 
 html.reveal-print .reveal .slides section.two-cols,
 html.reveal-print .reveal .slides section.two-cols-header {
   display: grid !important;
-}
-
-/*********************************************
- * DARK MODE (declared last so it wins the cascade
- * over the light-mode rules above)
- *********************************************/
-
-@media (prefers-color-scheme: dark) {
-  /*
-
-  TODO
-
-  :root {
-    --theme-background-gray: #2e2e2e;
-  }
-
-  .reveal .slides {
-    background-image: url('./assets/brand-aslant-dark.svg'), url('./assets/divider-bottom.svg');
-  }
-
-  */
 }
