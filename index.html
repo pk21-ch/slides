@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Demo slides</title>
+    <script src="./lib/slides.js" defer></script>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+            <!-- .slide: class="title-layout" -->
+            # Title Slide
+            <div class="title-content">
+
+              This is a subtitle.
+
+            </div>
+
+            ---
+
+            ## Lists
+
+            Default slide layout with a lists with fragments:
+
+            - Item 1 <!-- .element: class="fragment" -->
+            - Item 2 <!-- .element: class="fragment" -->
+            - Item 3 <!-- .element: class="fragment" -->
+
+            Enumerated lists are also supported:
+
+            1. Item 1
+            1. Item 2
+            1. Item 3
+
+            ---
+
+            ## Mixed lists
+
+            1. Item 1
+               - Subitem 1
+               - Subitem 2
+            1. Item 2
+               - Subitem 1
+               - Subitem 2
+                 - Subsubitem 1
+
+            ---
+
+            ## Columns
+
+            <div class="two-cols">
+            <div class="col">
+
+            ### Column 1
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+
+            </div>
+            <div class="col">
+
+            ### Column 2
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+
+            </div>
+            </div>
+
+            ---
+
+            ## Code
+
+            ```javascript []
+            function greet(name) {
+              console.log(`Hello, ${name}!`);
+            }
+            greet('World');
+            ```
+
+            Some more:
+
+            ```txt
+            coverage/ (branch name)
+            └── .undercov/ (root directory for undercov data)
+                └── [...branch-name]/ (directory for each branch)
+                    └── [base64-path-to-coverage].lcov (coverage file)
+            ```
+          </textarea>
+        </section>
+      </div>
+    </div>
+
+  </body>
+
+</html>
