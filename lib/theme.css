@@ -791,7 +791,7 @@
       position: absolute;
       top: 4.8rem;
       left: 0.6rem;
-      right: calc(25% - 0.15rem);
+      right: calc(25% - 3rem);
       height: 2px;
       background: var(--theme-primary);
     }
