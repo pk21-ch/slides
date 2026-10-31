@@ -744,6 +744,43 @@
     }
   }
 
+  .slide-content.icon-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
+    gap: 1.5rem 2.5rem;
+
+    .icon-list-item {
+      display: grid;
+      grid-template-columns: 4.5rem minmax(0, 1fr);
+      gap: 1rem;
+      align-items: center;
+      min-width: 0;
+
+      >img {
+        display: block;
+        width: 4.5rem;
+        height: 4.5rem;
+        filter: brightness(0) saturate(100%) invert(34%) sepia(91%) saturate(1238%) hue-rotate(169deg) brightness(91%) contrast(101%);
+      }
+
+      h3 {
+        margin: 0 0 0.35rem;
+        color: var(--theme-primary);
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.25;
+        text-transform: uppercase;
+      }
+
+      p {
+        margin: 0;
+        font-size: 1.3rem;
+        line-height: 1.35;
+      }
+    }
+  }
+
   .timeline {
     position: relative;
     grid-template-columns: repeat(4, minmax(0, 1fr));
