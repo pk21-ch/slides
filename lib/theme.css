@@ -475,6 +475,28 @@
       margin: 0;
     }
 
+    dl:not(.metrics) {
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    dl:not(.metrics) dt {
+      color: var(--theme-primary-alt);
+      font-weight: 600;
+    }
+
+    dl:not(.metrics) dt strong {
+      margin-inline-end: 0.4em;
+      color: var(--theme-primary);
+    }
+
+    dl:not(.metrics) dd {
+      margin: 0 0 0.75rem;
+      padding-inline-start: 0.9rem;
+      border-inline-start: 0.15rem solid var(--color-soft-blue);
+      line-height: 1.45;
+    }
+
     li {
       margin-inline-start: 2em;
 
@@ -573,7 +595,7 @@
     gap: 1.5rem;
     min-width: 0;
     min-height: 0;
-    margin-block-start: 3.5rem;
+    margin-block-start: 2rem;
 
     >p {
       margin: 0;
@@ -682,6 +704,26 @@
     }
   }
 
+  .people-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+
+    >div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    img {
+      display: block;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+  }
+
   .key-points {
     gap: 1.25rem;
 
@@ -754,14 +796,13 @@
 
   .image-text {
     display: grid;
-    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 3rem;
     align-items: start;
 
     h3 {
       font-size: 1.8rem;
       line-height: 1.25;
-      margin-block-end: 2rem;
     }
 
     p {
@@ -787,7 +828,7 @@
       max-height: none;
       aspect-ratio: 16 / 9;
       margin: 0;
-      object-fit: cover;
+      object-fit: contain;
     }
 
     figcaption {
