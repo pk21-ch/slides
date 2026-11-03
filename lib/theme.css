@@ -855,6 +855,7 @@
 
     figure {
       margin: 0;
+      justify-self: center;
     }
 
     img {
@@ -869,6 +870,7 @@
     }
 
     figcaption {
+      width: 100%;
       margin-block-start: 0.5rem;
       color: var(--color-gray-60);
       font-size: 0.7rem;
