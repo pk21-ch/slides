@@ -246,6 +246,7 @@
   font-size: 1.5em;
   font-family: var(--r-main-font);
   font-weight: var(--font-weight-regular);
+  hyphens: auto;
   font-feature-settings: "ss07", "ss08", "cv03", "cv04", "cv10";
   color: var(--r-main-color);
 
@@ -838,12 +839,10 @@ print {
     display: grid;
     padding: 0;
     list-style: none;
-    counter-reset: item;
 
     >li {
       min-width: 0;
       margin: 0;
-      counter-increment: item;
     }
 
     h3 {
@@ -865,7 +864,7 @@ print {
 
     >li {
       position: relative;
-      padding: 0 0 1rem 6.4rem;
+      padding: 0 0 1rem 5rem;
       border-bottom: 1px solid var(--color-gray-15);
 
       &:last-child {
@@ -873,7 +872,7 @@ print {
       }
 
       &::before {
-        content: counter(item, decimal-leading-zero);
+        content: counter(list-item, decimal-leading-zero);
         position: absolute;
         inset: 0 auto auto 0;
         color: var(--theme-primary);
@@ -980,7 +979,7 @@ print {
       position: relative;
 
       &::before {
-        content: counter(item, decimal-leading-zero);
+        content: counter(list-item, decimal-leading-zero);
         display: block;
         margin-block-end: 3.4rem;
         color: var(--theme-primary);
